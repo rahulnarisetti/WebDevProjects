@@ -19,7 +19,7 @@ GAME RULES:
 
 
 
-var scores,roundScore,activePlayer,gameplay,rollmemory,checkingz, zle;
+var scores,roundScore,activePlayer,gameplay,rollmemory,checking, zle;
 
 function init()
 {
@@ -87,7 +87,9 @@ if (gameplay)
     checking=rollmemory!==dice || rollmemory!==6;
     
     //to change to next player
-    if (dice>1 && checking)
+if (checking)
+{
+    if (dice>1)
     {
         roundScore += dice;
         document.querySelector('#current-'+activePlayer).textContent=roundScore;
@@ -98,9 +100,22 @@ if (gameplay)
         
         changePlayer();
         document.querySelector('.dice').style.display='block'; 
-        rollmemory=0;
+        
 
     }
+}
+
+else
+{
+    rollmemory=0;
+    document.getElementById('score-'+activePlayer).textContent='0';
+    scores[activePlayer]=0;
+    
+    changePlayer();
+    document.querySelector('.dice').style.display='block';
+    
+
+}
     
 
 }
